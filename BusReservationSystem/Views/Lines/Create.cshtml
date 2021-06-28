@@ -29,12 +29,12 @@
             </div>
             <div class="form-group">
                 <label asp-for="DepartureTime" class="control-label"></label>
-                <input asp-for="DepartureTime" class="form-control" />
+                <input id="dep_date" asp-for="DepartureTime" class="form-control"  data-date-format="dd-MMM-yyyy" type="text" placeholder="dd-MMM-yyyy" />
                 <span asp-validation-for="DepartureTime" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="ArrivalTime" class="control-label"></label>
-                <input asp-for="ArrivalTime" class="form-control" />
+                <input id="arr_date" asp-for="ArrivalTime" class="form-control"  data-date-format="dd-MMM-yyyy" type="text" placeholder="dd-MMM-yyyy" />
                 <span asp-validation-for="ArrivalTime" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -52,7 +52,24 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
-
+<link href="~/lib/jqueryui/jquery-ui.min.css" rel="stylesheet" />
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+<script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+
+<script type="text/javascript">
+
+    $('#arr_date').prop("readonly", true);
+    $('#dep_date').datepicker({
+        minDate:new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()),
+        onSelect: function () {
+            var selected = new Date($(this).val());
+            $('#arr_date').prop("readonly", false);
+            $("#arr_date").datepicker({
+                format: 'MM/DD/YYYY',
+                minDate: new Date(selected.getFullYear(), selected.getMonth(), selected.getDate())
+            });
+        }
+    });
+</script>
 }
