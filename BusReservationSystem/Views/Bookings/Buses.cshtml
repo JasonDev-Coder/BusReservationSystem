@@ -1,0 +1,43 @@
+﻿@model IEnumerable<BusReservationSystem.Models.BookingsBuses>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My Tickets</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.bus.Brand)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bus.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bus.Name)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bus.Brand)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bus.Capacity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bus.Name)
+                </td>
+              
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

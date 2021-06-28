@@ -27,34 +27,34 @@
                         </li>
                         @if (SignInManager.IsSignedIn(User))
                         {
-                            @if (User.IsInRole("ADMIN"))
+                            @if (User.IsInRole("Admin"))
                             {
 
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Buses" asp-action="Index">Manage Buses</a>
                                 </li>
-
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Lines" asp-action="Index">Manage Lines</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Lines" asp-action="Index">Manage tickets</a>
                                 </li>
                             }
+
                             else
                             {
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Lines" asp-action="AvailableLines">Book a travel</a>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="Index">Manage tickets</a>
                                 </li>
-
                                 <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-controller="Buses" asp-action="AvailableBus">Book a Bus</a>
                                 </li>
-                                }
-
+                                <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Bookings" asp-action="Buses">Booked Buses</a>
+                                </li>
                             }
-                        </ul>
+                        }
+                    </ul>
                 </div>
             </div>
         </nav>

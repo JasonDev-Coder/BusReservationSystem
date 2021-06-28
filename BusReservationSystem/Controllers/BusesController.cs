@@ -13,18 +13,19 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
 namespace BusReservationSystem.Controllers
-{   [Authorize]
+{
+   
     public class BusesController : Controller
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<IdentityUser> _userManager;
 
-        public BusesController(ApplicationDbContext context,UserManager<IdentityUser> userManager)
+        public BusesController(ApplicationDbContext context, UserManager<IdentityUser> userManager)
         {
             _context = context;
             _userManager = userManager;
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Buses
         public async Task<IActionResult> Index(string BusBrand,int Capacity)
         {
@@ -42,7 +43,7 @@ namespace BusReservationSystem.Controllers
             };
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Buses/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -60,7 +61,7 @@ namespace BusReservationSystem.Controllers
 
             return View(bus);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Buses/Create
         public IActionResult Create()
         {
@@ -98,6 +99,7 @@ namespace BusReservationSystem.Controllers
             }
             return View(bus);
         }
+        [Authorize(Roles = "Admin")]
         // GET: Buses/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -148,7 +150,7 @@ namespace BusReservationSystem.Controllers
             }
             return View(bus);
         }
-
+        [Authorize(Roles = "Admin")]
         // GET: Buses/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -223,7 +225,8 @@ namespace BusReservationSystem.Controllers
             };
             _context.BusBookings.Add(model);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index", "Bookings");
+            return RedirectToAction("Buses", "Bookings");
         }
-    }
+    
+}
 }

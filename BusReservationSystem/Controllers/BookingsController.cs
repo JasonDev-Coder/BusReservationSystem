@@ -40,6 +40,24 @@ namespace BusReservationSystem.Controllers
             }
             return View(lines);
         }
+        public async Task<IActionResult> Buses()
+        {
+            string id_str = _userManager.GetUserId(HttpContext.User);
+            var line_ids = await _context.BusBookings.Where(l => l.UserID == id_str).Select(l => new { l.Id, l.BusID }).ToListAsync();
+            List<BookingsBuses> lines = new List<BookingsBuses>();
+            for (int i = 0; i < line_ids.Count(); i++)
+            {
+                BookingsBuses book = new BookingsBuses
+                {
+                    Id = line_ids[i].Id,
+                    bus = _context.Bus.Where(l => l.Id == line_ids[i].BusID).FirstOrDefault()
+                };
+                lines.Add(book);
+
+            }
+            return View(lines);
+        }
+
         // GET: Bookings/Details/5
         public async Task<IActionResult> Details(int? id)
         {
