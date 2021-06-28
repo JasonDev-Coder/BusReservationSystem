@@ -1,0 +1,51 @@
+﻿@model BusReservationSystem.Models.Line
+
+@{
+    ViewData["Title"] = "Book";
+}
+
+<h1>Reserve a place</h1>
+
+<h3>Are you sure you want to Book this?</h3>
+<div>
+    <h4>Line</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.From)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.From)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.To)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.To)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.DepartureTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DepartureTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ArrivalTime)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ticketPrice)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ticketPrice)
+        </dd>
+    </dl>
+
+    <form asp-action="Book">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Book" class="btn btn-light" /> |
+        <a asp-action="AvailableLines">Back to List</a>
+    </form>
+</div>

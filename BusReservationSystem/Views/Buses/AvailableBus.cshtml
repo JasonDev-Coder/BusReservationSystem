@@ -1,0 +1,47 @@
+﻿@model IEnumerable<BusReservationSystem.Models.Bus>
+
+    @{
+        ViewData["Title"] = "Available Buses";
+    }
+    <h1>Available Buses</h1>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Brand)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Capacity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BusImage)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Brand)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Capacity)
+                    </td>
+                    <td>
+                        <img class="img-responsive full-width" src="data:image/*;base64,@Convert.ToBase64String(item.BusImage)" width="100" height="100" />
+                    </td>
+                    <td>
+                        <a asp-action="Book" asp-route-id="@item.Id">Book</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

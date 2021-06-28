@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BusReservationSystem.Models.BookingsLiness>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>My Tickets</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.line.From)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.line.To)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.line.DepartureTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.line.ArrivalTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.line.ticketPrice)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.line.From)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.line.To)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.line.DepartureTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.line.ArrivalTime)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.line.ticketPrice)
+                </td>
+                <td>
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
